@@ -1,0 +1,28 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: item-service  #微服务名称
+  datasource:   #数据源相关
+    url: jdbc:mysql://localhost:3306/item
+    username: root
+    password: z111111
+  rabbitmq:
+    host: 192.168.56.101   //下载好的rabbitmq地址信息
+    virtual-host: /leyou
+    username: leyou
+    password: leyou
+    template:
+      exchange: leyou.item.exchange
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:10086/eureka
+    instance:
+      lease-renewal-interval-in-seconds: 5  #x心跳时间
+      lease-expiration-duration-in-seconds: 15   #过期时间
+
+mybatis:
+  type-aliases-package: com.leyou.item.pojo  #通过包路径进行扫描，pojo在interface下，因为已经引入interface依赖
